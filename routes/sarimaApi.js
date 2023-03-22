@@ -12,8 +12,8 @@ router.post("/", (req, res) => {
   const config = {
     method: "post",
     maxBodyLength: Infinity,
-    // url: "http://127.0.0.1:6579/sarima",
-    url: "https://arima-sim-api-production.up.railway.app/sarima",
+    url: "http://127.0.0.1:6579/sarima",
+    // url: "https://arima-sim-api-production.up.railway.app/sarima",
     headers: {
       "Content-Type": "application/json",
     },
