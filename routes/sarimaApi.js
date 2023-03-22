@@ -7,6 +7,7 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
+  console.log('Inside /sarimaApi POST method')
   const params = req.body;
   const cleanedParams = convertToNumberParams(params);
   const config = {
