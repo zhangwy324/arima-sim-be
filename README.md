@@ -1,3 +1,3 @@
 # ARIMA Sim Backend Server
 
-### Express server of arima-sim project
+### Express server for arima-sim project
