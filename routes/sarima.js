@@ -9,6 +9,10 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
   const params = req.body;
   const cleanedParams = convertToNumberParams(params);
+  if (cleanedParams.seed > 2147483647 || cleanedParams.seed < -2147483647) {
+    res.status(400).json({ error: ["The seed value must be between -2147483647 and 2147483647"] });
+    return;
+  }
   const apiUrl = process.env.API_URL_DEPLOYED || "http://127.0.0.1:8000/sarima";
   const config = {
     method: "post",
