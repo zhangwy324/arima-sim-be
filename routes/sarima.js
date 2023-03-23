@@ -24,6 +24,7 @@ router.post("/", (req, res) => {
       res.status(200).json(response.data);
     })
     .catch(function (error) {
+      console.log(error);
       if (!error.response) {
         res.status(500).json({ error: { error: "500 Server Error", message: "The server might be down" } });
         return;
