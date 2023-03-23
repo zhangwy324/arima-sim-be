@@ -21,15 +21,22 @@ router.post("/", (req, res) => {
   };
   axios(config)
     .then(function (response) {
+      console.log("response data:", response.data);
+      // if the response.data has a error field, it means the api has error
+      if (response.data.error) {
+        // for api input error
+        // returns {error: [error message]}
+        // note it is an array
+        res.status(400).json({ error: response.data.error });
+        return;
+      }
       res.status(200).json(response.data);
     })
     .catch(function (error) {
-      console.log(error);
-      if (!error.response) {
-        res.status(500).json({ error: { error: "500 Server Error", message: "The server might be down" } });
-        return;
-      }
-      res.status(500).json({ error: error.response.data });
+      console.log("error.message:", error.message);
+      // for when api is down
+      // the response format matches the one above
+      res.status(500).json({ error: ["The server might be down"] });
     });
 });
 
