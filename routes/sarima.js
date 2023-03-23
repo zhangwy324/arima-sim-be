@@ -7,14 +7,14 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  console.log('Inside /sarimaApi POST method')
   const params = req.body;
   const cleanedParams = convertToNumberParams(params);
+  const apiUrl = process.env.API_URL_DEPLOYED || "http://127.0.0.1:8000/sarima";
+  console.log(apiUrl);
   const config = {
     method: "post",
     maxBodyLength: Infinity,
-    url: "http://127.0.0.1:6579/sarima",
-    // url: "https://arima-sim-api-production.up.railway.app/sarima",
+    url: apiUrl,
     headers: {
       "Content-Type": "application/json",
     },

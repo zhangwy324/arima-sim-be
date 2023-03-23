@@ -1,5 +1,6 @@
 const express = require("express");
-const sarimaApi = require("./routes/sarimaApi");
+const sarima = require("./routes/sarima");
+require("dotenv").config();
 
 const app = express();
 
@@ -16,9 +17,10 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/sarimaApi", sarimaApi);
+app.use("/sarima", sarima);
 
 const PORT = process.env.PORT || 4000;
+
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 });
