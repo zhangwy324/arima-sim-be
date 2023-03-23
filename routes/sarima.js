@@ -10,7 +10,6 @@ router.post("/", (req, res) => {
   const params = req.body;
   const cleanedParams = convertToNumberParams(params);
   const apiUrl = process.env.API_URL_DEPLOYED || "http://127.0.0.1:8000/sarima";
-  console.log(apiUrl);
   const config = {
     method: "post",
     maxBodyLength: Infinity,
@@ -22,7 +21,6 @@ router.post("/", (req, res) => {
   };
   axios(config)
     .then(function (response) {
-      console.log(response.data);
       res.status(200).json(response.data);
     })
     .catch(function (error) {
@@ -34,6 +32,7 @@ router.post("/", (req, res) => {
     });
 });
 
+// helper function
 function convertToNumberParams(body) {
   for (const key in body) {
     if (typeof body[key] == "object") {
