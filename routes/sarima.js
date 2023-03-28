@@ -8,7 +8,9 @@ router.get("/", (req, res) => {
 
 router.post("/", (req, res) => {
   const params = req.body;
+  console.log("params:", params);
   const cleanedParams = convertToNumberParams(params);
+  console.log("cleanedParams:", cleanedParams);
   if (cleanedParams.seed > 2147483647 || cleanedParams.seed < -2147483647) {
     res.status(400).json({ error: ["The seed value must be between -2147483647 and 2147483647"] });
     return;
@@ -30,6 +32,7 @@ router.post("/", (req, res) => {
         // for api input error
         // returns {error: [error message]}
         // note it is an array
+        console.log("api error:", response.data.error);
         res.status(400).json({ error: response.data.error });
         return;
       }
